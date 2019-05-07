@@ -1,5 +1,5 @@
 {
-  "name": "lersoft/laravel-thumbnail",
+  "name": "tranlongpc/laravel-thumbnail",
   "description": "Laravel Package to resize images on the fly with cache functionalities.",
   "license": "MIT",
   "authors": [
