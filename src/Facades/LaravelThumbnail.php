@@ -1,5 +1,5 @@
 <?php
-namespace Lersoft\LaravelThumbnail\Facades;
+namespace tranlongpc\LaravelThumbnail\Facades;
 use Illuminate\Support\Facades\Facade;
 class LaravelThumbnail extends Facade
 {

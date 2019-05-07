@@ -1,5 +1,5 @@
 <?php
-namespace Lersoft\LaravelThumbnail;
+namespace tranlongpc\LaravelThumbnail;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 class LaravelThumbnail

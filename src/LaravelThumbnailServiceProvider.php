@@ -1,6 +1,6 @@
 <?php
 
-namespace Lersoft\LaravelThumbnail;
+namespace tranlongpc\LaravelThumbnail;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -35,7 +35,7 @@ class ComposerStaticInit30205585e68b3fbf11665bf0f2fcfbe3
         ),
         'L' => 
         array (
-            'Lersoft\\LaravelThumbnail\\' => 25,
+            'tranlongpc\\LaravelThumbnail\\' => 25,
         ),
         'I' => 
         array (
@@ -90,7 +90,7 @@ class ComposerStaticInit30205585e68b3fbf11665bf0f2fcfbe3
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'Lersoft\\LaravelThumbnail\\' => 
+        'tranlongpc\\LaravelThumbnail\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
             1 => __DIR__ . '/../..' . '/tests',
