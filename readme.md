@@ -1,5 +1,5 @@
 # Laravel Thumbnail
-
+v2
 Laravel Package to resize images on the fly with cache functionalities. <br/><br/>
 Using Thumbnail facade you will get resized images' paths on the fly. If an image resizing with same dimensions has been already requested before, the package will return the cached image from the previous request. Cached images are stored in "thumbs" folder inside your images root path. 
 
