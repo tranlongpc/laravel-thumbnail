@@ -12,6 +12,7 @@ class LaravelThumbnail
     public static function thumb($path, $width = null, $height = null, $type = "fit")
     {
         $images_path = config('thumb.images_path');
+        $media_path = config('thumb.media_path');
         $path = ltrim($path, "/");
 
         //if path exists and is image
@@ -27,8 +28,8 @@ class LaravelThumbnail
                 }
 
                 //if thumbnail exist returns it
-                if (File::exists(public_path("{$images_path}/thumbs/" . "{$width}x{$height}_{$type}/" . $path))) {
-                    return url("{$images_path}/thumbs/" . "{$width}x{$height}_{$type}/" . $path);
+                if (File::exists(public_path("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $path))) {
+                    return url("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $path);
                 }
 
 
@@ -60,15 +61,15 @@ class LaravelThumbnail
                 $dir_path = (dirname($path) == '.') ? "" : dirname($path);
 
                 //Create the directory if it doesn't exist
-                if (!File::exists(public_path("{$images_path}/thumbs/" . "{$width}x{$height}_{$type}/" . $dir_path))) {
-                    File::makeDirectory(public_path("{$images_path}/thumbs/" . "{$width}x{$height}_{$type}/" . $dir_path), 0775, true);
+                if (!File::exists(public_path("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $dir_path))) {
+                    File::makeDirectory(public_path("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/". $dir_path), 0775, true);
                 }
 
                 //Save the thumbnail
-                $image->save(public_path("{$images_path}/thumbs/" . "{$width}x{$height}_{$type}/" . $path));
+                $image->save(public_path("{$images_path}/{$media_path}/" . "{$width}x{$height}_{$type}/" . $path));
 
                 //return the url of the thumbnail
-                return url("{$images_path}/thumbs/" . "{$width}x{$height}_{$type}/" . $path);
+                return url("{$images_path}/{$media_path}/" . "{$width}x{$height}_{$type}/" . $path);
 
             } else {
                 $width = is_null($width) ? 400 : $width;
