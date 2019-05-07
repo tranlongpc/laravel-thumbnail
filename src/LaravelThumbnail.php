@@ -27,9 +27,11 @@ class LaravelThumbnail
                     return url("{$images_path}/" . $path);
                 }
 
+                $path_build = $images_path .'/'. $media_path .'/'. $type .'/'. $width .'x'. $height .'/';
+
                 //if thumbnail exist returns it
-                if (File::exists(public_path("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $path))) {
-                    return url("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $path);
+                if (File::exists(public_path($path_build . $path))) {
+                    return url($path_build . $path);
                 }
 
 
@@ -61,15 +63,15 @@ class LaravelThumbnail
                 $dir_path = (dirname($path) == '.') ? "" : dirname($path);
 
                 //Create the directory if it doesn't exist
-                if (!File::exists(public_path("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $dir_path))) {
-                    File::makeDirectory(public_path("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $dir_path), 0775, true);
+                if (!File::exists(public_path($path_build . $dir_path))) {
+                    File::makeDirectory(public_path($path_build . $dir_path), 0775, true);
                 }
 
                 //Save the thumbnail
-                $image->save(public_path("{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $path));
+                $image->save(public_path($path_build . $path));
 
                 //return the url of the thumbnail
-                return url("{{$images_path}/{$media_path}/{$type}/" . "{$width}x{$height}/" . $path);
+                return url($path_build . $path);
 
             } else {
                 $width = is_null($width) ? 400 : $width;
