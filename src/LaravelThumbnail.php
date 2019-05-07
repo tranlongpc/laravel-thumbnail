@@ -27,11 +27,25 @@ class LaravelThumbnail
                     return url("{$images_path}/" . $path);
                 }
 
-                $path_build = $images_path .'/'. $media_path .'/'. $type .'_'. $width .'x'. $height .'/';
+
+                $file_name = $path;
+                $path_build = $images_path . '/' . $media_path . '/' . $type . '_' . $width . 'x' . $height . '/';
+
+                $config_file_name = config('thumb.file_name');
+                if($config_file_name['rewrite']) {
+
+                    $prefix = '';
+                    if($config_file_name['prefix']){
+                        $prefix = $config_file_name['prefix'] .'_';
+                    }
+                    $path_replace = str_replace($config_file_name['remove'], "", $path);
+                    $path_replace = str_replace('/', $config_file_name['space'], $path_replace);
+                    $file_name =  $prefix . $path_replace ;
+                }
 
                 //if thumbnail exist returns it
-                if (File::exists(public_path($path_build . $path))) {
-                    return url($path_build . $path);
+                if (File::exists(public_path($path_build . $file_name))) {
+                    return url($path_build . $file_name);
                 }
 
 
@@ -42,6 +56,11 @@ class LaravelThumbnail
                         $image->fit($width, $height, function ($constraint) {
                         });
                         break;
+                    }
+                    case "crop": {
+                        //stretched
+                        $image->fit($width, $height);
+                        $image->crop($width, $height);
                     }
                     case "resize": {
                         //stretched
@@ -68,10 +87,10 @@ class LaravelThumbnail
                 }
 
                 //Save the thumbnail
-                $image->save(public_path($path_build . $path));
+                $image->save(public_path($path_build . $file_name));
 
                 //return the url of the thumbnail
-                return $path_build . $path;
+                return $path_build . $file_name;
 
             } else {
                 $width = is_null($width) ? 400 : $width;
